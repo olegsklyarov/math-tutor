@@ -1,27 +1,30 @@
-from random import randint
+from random import shuffle
 
-m = [[False] * 11 for _ in range(11)]
-ok = 0
-while True:
-    a = randint(1, 10)
-    b = randint(1, 10)
-    if m[a][b]:
-        continue
-    er = a * b
-    ar = None
+tasks = []
+for a in range(1, 11):
+    for b in range(a, 11):
+        tasks.append((a, b))
+shuffle(tasks)
+
+solved = 0
+mistakes = 0
+
+for a, b in tasks:
+    expected = a * b
+    actual = None
     while True:
         try:
             print(f"{a} * {b} = ", end="")
-            ar = int(input().strip())
-            break
+            actual = int(input().strip())
+            if expected == actual:
+                solved += 1
+                progress = int((solved / len(tasks)) * 100)
+                print(f"✅ прогресс {progress}%, ошибок: {mistakes}")
+                break
+            else:
+                mistakes += 1
+                print(f"❌ прогресс {progress}%, ошибок: {mistakes}")
         except KeyboardInterrupt:
             exit()
         except:
             pass
-    if er == ar:
-        m[a][b] = m[b][a] = True
-        ok += 1
-        if ok == 50:
-            break
-    print('✅' if er == ar else '❗️');
-
