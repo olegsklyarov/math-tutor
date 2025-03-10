@@ -4,7 +4,7 @@ from questions import Questions
 solved = 0
 mistakes = 0
 
-for a, b, progress in Questions():
+for a, b, progress in Questions(is_full=False):
     expected = a * b
     actual = None
     while True:

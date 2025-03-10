@@ -2,10 +2,10 @@ from random import shuffle
 
 
 class Questions:
-    def __init__(self):
+    def __init__(self, is_full: bool = False):
         self.questions = []
         for a in range(1, 11):
-            for b in range(a, 11):
+            for b in range(1 if is_full else a, 11):
                 self.questions.append((a, b))
         shuffle(self.questions)
 
