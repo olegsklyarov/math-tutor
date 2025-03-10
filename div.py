@@ -1,27 +1,24 @@
-from random import randint
+from questions import Questions
 
-m = [[False] * 11 for _ in range(11)]
-ok = 0
-while True:
-    a = randint(1, 10)
-    b = randint(1, 10)
-    if m[a][b]:
-        continue
-    mult = a * b
-    ar = None
+
+solved = 0
+mistakes = 0
+
+for a, b, progress in Questions():
+    ab = a * b
+    actual = None
     while True:
         try:
-            print(f"{mult} : {b} = ", end="")
-            ar = int(input().strip())
-            break
+            print(f"{ab} : {b} = ", end="")
+            actual = int(input().strip())
+            if a == actual:
+                solved += 1
+                print(f"✅ прогресс {progress}%, ошибок: {mistakes}")
+                break
+            else:
+                mistakes += 1
+                print(f"❌ прогресс {progress}%, ошибок: {mistakes}")
         except KeyboardInterrupt:
             exit()
         except:
             pass
-    if a == ar:
-        m[a][b] = m[b][a] = True
-        ok += 1
-        if ok == 50:
-            break
-    print('✅' if a == ar else '❗️');
-
