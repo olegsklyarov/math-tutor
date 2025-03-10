@@ -13,11 +13,11 @@ for a, b, progress in Questions(is_full=False):
             actual = int(input().strip())
             if expected == actual:
                 solved += 1
-                print(f"✅ прогресс {progress}%, ошибок: {mistakes}")
+                print(f"✅ прогресс {progress}%, верно: {solved}, ошибок: {mistakes}")
                 break
             else:
                 mistakes += 1
-                print(f"❌ прогресс {progress}%, ошибок: {mistakes}")
+                print(f"❌ прогресс {progress}%, верно: {solved}, ошибок: {mistakes}")
         except KeyboardInterrupt:
             exit()
         except:
